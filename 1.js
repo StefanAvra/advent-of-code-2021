@@ -2,13 +2,34 @@ function measure(sonarInput) {
     let prev = Infinity;
     let increasedMeasurements = 0;
 
-    sonarInput.split("\n").forEach((line) => {
-        const num = Number(line);
+    sonarInput = sonarInput.split("\n").map((val) => Number(val));
+
+    for (let num of sonarInput) {
         if (prev < num) {
             increasedMeasurements++;
         }
         prev = num;
-    });
+    }
+    console.log(increasedMeasurements);
+
+    // part two
+    let windows = [];
+    for (let i = 0; i < sonarInput.length - 2; i++) {
+        windows.push(sonarInput.slice(i, i + 3).reduce((a, b) => a + b, 0));
+        // console.log(
+        //     `idx is ${i} and ${
+        //         i + 3
+        //     } because ${typeof i} so it's ${sonarInput.slice(i, i + 3)}`
+        // );
+    }
+    prev = Infinity;
+    increasedMeasurements = 0;
+    for (let num of windows) {
+        if (prev < num) {
+            increasedMeasurements++;
+        }
+        prev = num;
+    }
     console.log(increasedMeasurements);
 }
 
