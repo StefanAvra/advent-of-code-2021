@@ -15,6 +15,20 @@ function solve(puzzleInput) {
         }
     }
     console.log(pos[0] * pos[1]);
+
+    //part two
+    pos = [0, 0];
+    let aim = 0;
+    for (let instruction of puzzleInput) {
+        let [dir, val] = instruction;
+        if (dir === "forward") {
+            pos[0] += val;
+            pos[1] += aim * val;
+        } else {
+            aim += dir === "down" ? val : -val;
+        }
+    }
+    console.log(pos[0] * pos[1]);
 }
 
 // // exmaple
@@ -24,6 +38,8 @@ function solve(puzzleInput) {
 // up 3
 // down 8
 // forward 2`);
+// process.exit();
+
 solve(`forward 5
 forward 2
 forward 9
